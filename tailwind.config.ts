@@ -9,8 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        accent: "#E6FF4B",
+        dark: "#1E1C1C",
+        light: "#F4F4F4",
+        gray: "#2A2A2A",
+      },
+      fontFamily: {
+        heading: ["Satoshi", "var(--font-syne)", "sans-serif"],
+        body: ["General Sans", "var(--font-dm-sans)", "sans-serif"],
+      },
+      transitionTimingFunction: {
+        wemian: "cubic-bezier(0.76, 0, 0.24, 1)",
       },
     },
   },
