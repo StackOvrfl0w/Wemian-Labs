@@ -2,22 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-
-const headlineWords = [
-  "We",
-  "build",
-  "the",
-  "systems",
-  "that",
-  "make",
-  "your",
-  "business",
-  "run",
-  "without",
-  "you.",
-];
+import { useLanguage } from "@/components/language-provider";
 
 export function Hero() {
+  const { language, t } = useLanguage();
   const rootRef = useRef<HTMLElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
   const wordRefs = useRef<HTMLSpanElement[]>([]);
@@ -80,7 +68,7 @@ export function Hero() {
     }, rootRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [language]);
 
   return (
     <section
@@ -92,11 +80,11 @@ export function Hero() {
           ref={pillRef}
           className="rounded-full border border-[rgba(230,255,75,0.3)] px-4 py-1.5 text-sm uppercase tracking-wider text-accent opacity-0 will-change-transform"
         >
-          Digital Optimizations
+          {t.hero.pill}
         </div>
 
         <h1 className="mt-8 max-w-4xl font-heading text-3xl font-bold leading-tight text-light md:text-6xl lg:text-7xl">
-          {headlineWords.map((word, index) => (
+          {t.hero.headlineWords.map((word, index) => (
             <span
               key={`${word}-${index}`}
               ref={(element) => {
@@ -105,11 +93,11 @@ export function Hero() {
                 }
               }}
               className={`inline-block opacity-0 ${
-                word === "systems" ? "text-accent" : ""
+                word === t.hero.highlight ? "text-accent" : ""
               } will-change-transform`}
             >
               {word}
-              {index < headlineWords.length - 1 ? "\u00a0" : ""}
+              {index < t.hero.headlineWords.length - 1 ? "\u00a0" : ""}
             </span>
           ))}
         </h1>
@@ -118,8 +106,7 @@ export function Hero() {
           ref={subtextRef}
           className="mt-6 max-w-2xl text-lg text-light/70 opacity-0 will-change-transform md:text-xl"
         >
-          Automation. AI. Marketing. One integrated approach to digital
-          operations.
+          {t.hero.subtext}
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -132,7 +119,7 @@ export function Hero() {
             href="#contact"
             className="rounded-full bg-accent px-7 py-3 text-sm font-semibold uppercase tracking-wider text-dark opacity-0 transition duration-300 ease-wemian hover:bg-light active:scale-[0.97] active:duration-100"
           >
-            Start a Project
+            {t.hero.primary}
           </a>
           <a
             ref={(element) => {
@@ -143,7 +130,7 @@ export function Hero() {
             href="#process"
             className="rounded-full border border-[rgba(244,244,244,0.2)] px-7 py-3 text-sm font-semibold uppercase tracking-wider text-light opacity-0 transition duration-300 ease-wemian hover:border-accent hover:text-accent active:scale-[0.97] active:duration-100"
           >
-            See Our Process
+            {t.hero.secondary}
           </a>
         </div>
 

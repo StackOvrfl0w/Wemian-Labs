@@ -4,46 +4,34 @@ import { useEffect, useRef } from "react";
 import { BarChart3, Brain, Cog, Share2, type LucideIcon } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/components/language-provider";
 
 type Service = {
   number: string;
   icon: LucideIcon;
-  title: string;
-  description: string;
 };
 
 const services: Service[] = [
   {
     number: "01",
     icon: Cog,
-    title: "Process Automation",
-    description:
-      "We map your workflows, kill the redundancies, and build systems that execute without manual input.",
   },
   {
     number: "02",
     icon: Brain,
-    title: "AI Development",
-    description:
-      "Custom AI agents, integrations, and intelligent tools built around your actual business logic.",
   },
   {
     number: "03",
     icon: BarChart3,
-    title: "Digital Marketing",
-    description:
-      "Performance-driven campaigns. SEO, paid media, and conversion systems that compound.",
   },
   {
     number: "04",
     icon: Share2,
-    title: "Strategic Social Media",
-    description:
-      "Platform-specific content strategies that build authority and generate inbound demand.",
   },
 ];
 
 export function ServicesSection() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
 
@@ -85,19 +73,20 @@ export function ServicesSection() {
     >
       <div className="mx-auto max-w-7xl">
         <p className="text-xs uppercase tracking-[0.3em] text-accent/60">
-          WHAT WE DO
+          {t.services.label}
         </p>
         <h2 className="mt-5 max-w-3xl font-heading text-3xl font-bold leading-tight text-light md:text-5xl">
-          Four pillars. One outcome: operational leverage.
+          {t.services.heading}
         </h2>
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = service.icon;
+            const content = t.services.items[index];
 
             return (
               <div
-                key={service.title}
+                key={service.number}
                 ref={(element) => {
                   if (element) {
                     cardRefs.current.push(element);
@@ -110,16 +99,16 @@ export function ServicesSection() {
                 </span>
                 <Icon className="mt-4 text-accent" size={28} strokeWidth={1.8} />
                 <h3 className="mt-4 text-xl font-bold text-light">
-                  {service.title}
+                  {content.title}
                 </h3>
                 <p className="mt-3 overflow-hidden text-sm leading-relaxed text-light/60 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]">
-                  {service.description}
+                  {content.description}
                 </p>
                 <a
                   href="#services"
                   className="mt-6 text-sm text-accent transition duration-300 ease-wemian hover:underline"
                 >
-                  Learn more &rarr;
+                  {t.services.learnMore} &rarr;
                 </a>
               </div>
             );

@@ -1,23 +1,19 @@
-const marqueeItems = [
-  "Process Automation",
-  "AI-Powered Workflows",
-  "Strategic Marketing",
-  "Digital Transformation",
-  "Social Media Systems",
-  "Lead Generation Engines",
-];
+"use client";
+
+import { useLanguage } from "@/components/language-provider";
 
 type MarqueeGroupProps = {
   hidden?: boolean;
+  items: readonly string[];
 };
 
-function MarqueeGroup({ hidden = false }: MarqueeGroupProps) {
+function MarqueeGroup({ hidden = false, items }: MarqueeGroupProps) {
   return (
     <ul
       className="flex shrink-0 items-center"
       aria-hidden={hidden ? "true" : undefined}
     >
-      {marqueeItems.map((item) => (
+      {items.map((item) => (
         <li key={item} className="flex shrink-0 items-center">
           <span className="whitespace-nowrap text-sm uppercase tracking-[0.2em] text-light/40">
             {item}
@@ -33,11 +29,13 @@ function MarqueeGroup({ hidden = false }: MarqueeGroupProps) {
 }
 
 export function MarqueeStrip() {
+  const { t } = useLanguage();
+
   return (
     <section className="marquee-strip w-full overflow-hidden border-y border-[rgba(244,244,244,0.08)] py-6">
       <div className="marquee-track flex w-max">
-        <MarqueeGroup />
-        <MarqueeGroup hidden />
+        <MarqueeGroup items={t.marquee} />
+        <MarqueeGroup items={t.marquee} hidden />
       </div>
     </section>
   );

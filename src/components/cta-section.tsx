@@ -3,8 +3,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/components/language-provider";
 
 export function CtaSection() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const textRefs = useRef<(HTMLElement | null)[]>([]);
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -64,7 +66,7 @@ export function CtaSection() {
           }}
           className="font-heading text-3xl font-bold leading-tight opacity-0 will-change-transform md:text-5xl"
         >
-          Ready to stop managing and start scaling?
+          {t.cta.heading}
         </h2>
         <p
           ref={(element) => {
@@ -72,15 +74,14 @@ export function CtaSection() {
           }}
           className="mt-4 text-lg text-dark/70 opacity-0 will-change-transform"
         >
-          Tell us what&apos;s slowing you down. We&apos;ll tell you exactly what
-          to build.
+          {t.cta.subtext}
         </p>
         <a
           ref={buttonRef}
           href="mailto:hello@wemianlabs.com"
           className="mt-8 inline-flex rounded-full border-2 border-dark bg-dark px-8 py-3.5 text-base font-semibold text-light opacity-0 transition duration-300 ease-wemian will-change-transform hover:bg-transparent hover:text-dark active:scale-[0.97] active:duration-100 focus-visible:[--focus-ring-color:#1E1C1C]"
         >
-          Book a Strategy Call
+          {t.cta.button}
         </a>
       </div>
     </section>

@@ -3,35 +3,17 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/components/language-provider";
 
 const processSteps = [
-  {
-    number: "01",
-    title: "Diagnosis",
-    description:
-      "We audit your current operations, identify bottlenecks, and map the opportunity cost of manual work.",
-  },
-  {
-    number: "02",
-    title: "Architecture",
-    description:
-      "We design the system — tools, workflows, integrations, and content engines — before writing a single line.",
-  },
-  {
-    number: "03",
-    title: "Build & Test",
-    description:
-      "Rapid implementation in sprints. You see working outputs every week, not a final reveal after months.",
-  },
-  {
-    number: "04",
-    title: "Optimize & Scale",
-    description:
-      "We measure, refine, and scale what works. Then train your team to own it.",
-  },
+  { number: "01" },
+  { number: "02" },
+  { number: "03" },
+  { number: "04" },
 ];
 
 export function ProcessSection() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const circleRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -162,16 +144,16 @@ export function ProcessSection() {
     >
       <div className="mx-auto max-w-7xl">
         <p className="text-xs uppercase tracking-[0.3em] text-accent/60">
-          HOW WE WORK
+          {t.process.label}
         </p>
         <h2 className="mt-5 max-w-3xl font-heading text-3xl font-bold leading-tight text-light md:text-5xl">
-          From diagnosis to deployment. No fluff in between.
+          {t.process.heading}
         </h2>
 
         <div className="mt-16 flex flex-col lg:flex-row lg:items-start">
           {processSteps.map((step, index) => (
             <div
-              key={step.title}
+              key={step.number}
               ref={(element) => {
                 stepRefs.current[index] = element;
               }}
@@ -204,9 +186,11 @@ export function ProcessSection() {
                 }}
                 className="max-w-xs opacity-0 will-change-transform"
               >
-                <h3 className="text-lg font-bold text-light">{step.title}</h3>
+                <h3 className="text-lg font-bold text-light">
+                  {t.process.steps[index].title}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-light/60">
-                  {step.description}
+                  {t.process.steps[index].description}
                 </p>
               </div>
             </div>

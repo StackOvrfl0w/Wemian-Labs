@@ -3,25 +3,23 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/components/language-provider";
 
 const stats = [
   {
     value: 40,
     prefix: "",
     suffix: "+",
-    label: "Automations Deployed",
   },
   {
     value: 3,
     prefix: "",
     suffix: "x",
-    label: "Average ROI",
   },
   {
     value: 2,
     prefix: "< ",
     suffix: " wks",
-    label: "Time to First Output",
   },
 ];
 
@@ -30,6 +28,7 @@ function formatStat(prefix: string, value: number, suffix: string) {
 }
 
 export function AboutSection() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const leftItemRefs = useRef<(HTMLElement | null)[]>([]);
   const visualRef = useRef<HTMLDivElement>(null);
@@ -122,7 +121,7 @@ export function AboutSection() {
             }}
             className="text-xs uppercase tracking-[0.3em] text-accent/60 opacity-0 will-change-transform"
           >
-            WHY WEMIAN LABS
+            {t.about.label}
           </p>
           <h2
             ref={(element) => {
@@ -130,7 +129,7 @@ export function AboutSection() {
             }}
             className="mt-5 max-w-2xl font-heading text-3xl font-bold leading-tight text-light opacity-0 will-change-transform md:text-5xl"
           >
-            We don&apos;t sell hours. We sell outcomes.
+            {t.about.heading}
           </h2>
 
           <div
@@ -139,16 +138,9 @@ export function AboutSection() {
             }}
             className="mt-6 max-w-2xl space-y-5 text-base leading-relaxed text-light/70 opacity-0 will-change-transform"
           >
-            <p>
-              Most agencies deliver deliverables. We deliver operational change.
-              The difference is that our work keeps generating value after the
-              invoice is paid.
-            </p>
-            <p>
-              We operate at the intersection of automation, AI, and marketing —
-              because isolated tactics don&apos;t move the needle. Integrated
-              systems do.
-            </p>
+            {t.about.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
 
           <div
@@ -159,7 +151,7 @@ export function AboutSection() {
             className="mt-10 flex flex-wrap gap-8 opacity-0 will-change-transform"
           >
             {stats.map((stat, index) => (
-              <div key={stat.label} className="min-w-[120px]">
+              <div key={stat.suffix} className="min-w-[120px]">
                 <span
                   ref={(element) => {
                     statValueRefs.current[index] = element;
@@ -169,7 +161,7 @@ export function AboutSection() {
                   {formatStat(stat.prefix, 0, stat.suffix)}
                 </span>
                 <span className="mt-2 block text-xs uppercase tracking-[0.18em] text-light/40">
-                  {stat.label}
+                  {t.about.stats[index].label}
                 </span>
               </div>
             ))}
