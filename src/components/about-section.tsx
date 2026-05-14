@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/components/language-provider";
@@ -28,7 +28,15 @@ function formatStat(prefix: string, value: number, suffix: string) {
 }
 
 export function AboutSection() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const localizedStats = useMemo(
+    () => [
+      { ...stats[0], suffix: "+" },
+      { ...stats[1], suffix: "x" },
+      { ...stats[2], suffix: language === "es" ? " semanas" : " wks" },
+    ],
+    [language],
+  );
   const sectionRef = useRef<HTMLElement>(null);
   const leftItemRefs = useRef<(HTMLElement | null)[]>([]);
   const visualRef = useRef<HTMLDivElement>(null);
@@ -74,7 +82,7 @@ export function AboutSection() {
         },
       );
 
-      stats.forEach((stat, index) => {
+      localizedStats.forEach((stat, index) => {
         const element = statValueRefs.current[index];
 
         if (!element) {
@@ -105,7 +113,7 @@ export function AboutSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [localizedStats]);
 
   return (
     <section
@@ -150,7 +158,7 @@ export function AboutSection() {
             }}
             className="mt-10 flex flex-wrap gap-8 opacity-0 will-change-transform"
           >
-            {stats.map((stat, index) => (
+            {localizedStats.map((stat, index) => (
               <div key={stat.suffix} className="min-w-[120px]">
                 <span
                   ref={(element) => {
@@ -174,9 +182,13 @@ export function AboutSection() {
           aria-hidden="true"
         >
           <div className="absolute inset-8 rounded-[2rem] border border-accent/10" />
-          <div className="about-float absolute left-[18%] top-[24%] h-[56%] w-[24%] origin-center rotate-[-18deg] rounded-[1.75rem] bg-accent shadow-[0_0_80px_rgba(230,255,75,0.12)]" />
-          <div className="about-float about-float-delayed absolute left-[39%] top-[32%] h-[48%] w-[23%] origin-center rotate-[18deg] rounded-[1.75rem] bg-accent/40" />
-          <div className="about-float about-float-slow absolute left-[58%] top-[22%] h-[58%] w-[24%] origin-center rotate-[-14deg] rounded-[1.75rem] bg-accent/15" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt="Wemian Labs logo"
+            className="absolute inset-0 m-auto h-[64%] w-[64%] object-contain opacity-95"
+            loading="lazy"
+          />
           <div className="absolute bottom-10 left-10 right-10 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
         </div>
       </div>

@@ -43,7 +43,7 @@ const translations = {
       ],
       highlight: "systems",
       subtext:
-        "Automation. AI. Marketing. One integrated approach to digital operations.",
+        "Automation • AI • Marketing. One integrated approach to digital operations.",
       primary: "Start a Project",
       secondary: "See Our Process",
     },
@@ -73,7 +73,7 @@ const translations = {
         {
           title: "Digital Marketing",
           description:
-            "Performance-driven campaigns. SEO, paid media, and conversion systems that compound.",
+            "Performance-driven campaigns. SEO, paid media, and compounding conversion systems.",
         },
         {
           title: "Strategic Social Media",
@@ -205,7 +205,7 @@ const translations = {
         {
           title: "Marketing Digital",
           description:
-            "Campañas orientadas al rendimiento. SEO, medios pagos y sistemas de conversión que se acumulan.",
+            "Campañas orientadas al rendimiento. SEO, medios pagados y sistemas de conversión acumulativos.",
         },
         {
           title: "Redes Sociales Estratégicas",
@@ -244,7 +244,7 @@ const translations = {
       label: "POR QUÉ WEMIAN LABS",
       heading: "No vendemos horas. Vendemos resultados.",
       paragraphs: [
-        "La mayoría de agencias entrega entregables. Nosotros entregamos cambio operativo. La diferencia es que nuestro trabajo sigue generando valor después de pagar la factura.",
+        "La mayoría de las agencias entrega trabajos sueltos. Nosotros entregamos cambio operativo. La diferencia es que nuestro trabajo sigue generando valor después de pagar la factura.",
         "Operamos en la intersección de automatización, IA y marketing — porque las tácticas aisladas no mueven la aguja. Los sistemas integrados sí.",
       ],
       stats: [

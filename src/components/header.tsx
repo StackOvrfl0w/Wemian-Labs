@@ -23,9 +23,17 @@ export function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-12 lg:px-20">
         <a
           href="#top"
-          className="font-heading text-sm font-bold uppercase tracking-[0.18em] text-light transition duration-300 ease-wemian hover:text-accent"
+          className="transition duration-300 ease-wemian hover:opacity-90"
+          aria-label="Wemian Labs"
         >
-          Wemian Labs
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt="Wemian Labs"
+            className="h-7 w-auto sm:h-8"
+            width={120}
+            height={32}
+          />
         </a>
 
         <nav

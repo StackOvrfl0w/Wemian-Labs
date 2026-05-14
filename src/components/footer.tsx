@@ -3,20 +3,6 @@
 import { BriefcaseBusiness, Camera, X } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 
-const companyLinks = [
-  { href: "#about" },
-  { href: "#services" },
-  { href: "#process" },
-  { href: "#contact" },
-];
-
-const serviceLinks = [
-  { href: "#services" },
-  { href: "#services" },
-  { href: "#services" },
-  { href: "#services" },
-];
-
 const socialLinks = [
   {
     label: "LinkedIn",
@@ -36,7 +22,7 @@ const socialLinks = [
 ];
 
 const linkClass =
-  "nav-link mb-1 w-fit text-sm leading-loose text-light/60 transition duration-300 ease-wemian hover:text-accent";
+  "nav-link mb-1 block w-fit text-sm leading-loose text-light/60 transition duration-300 ease-wemian hover:text-accent";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -48,11 +34,9 @@ export function Footer() {
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="Wemian Labs"
-              className="h-8 w-auto"
-              width={176}
-              height={32}
+              className="h-12 w-auto sm:h-14 md:h-16"
               loading="lazy"
             />
             <p className="mt-2 text-sm text-light/50">{t.footer.tagline}</p>
@@ -65,22 +49,40 @@ export function Footer() {
             <p className="mb-4 text-sm font-semibold text-light">
               {t.footer.company}
             </p>
-            {companyLinks.map((link, index) => (
-              <a key={link.href} href={link.href} className={linkClass}>
-                {t.footer.companyLinks[index]}
+            <div className="flex flex-col">
+              <a href="#about" className={linkClass}>
+                About
               </a>
-            ))}
+              <a href="#services" className={linkClass}>
+                Services
+              </a>
+              <a href="#process" className={linkClass}>
+                Process
+              </a>
+              <a href="#contact" className={linkClass}>
+                Contact
+              </a>
+            </div>
           </nav>
 
           <nav aria-label="Services">
             <p className="mb-4 text-sm font-semibold text-light">
               {t.footer.services}
             </p>
-            {serviceLinks.map((link, index) => (
-              <a key={`${link.href}-${index}`} href={link.href} className={linkClass}>
-                {t.footer.serviceLinks[index]}
+            <div className="flex flex-col">
+              <a href="#services" className={linkClass}>
+                Process Automation
               </a>
-            ))}
+              <a href="#services" className={linkClass}>
+                AI Development
+              </a>
+              <a href="#services" className={linkClass}>
+                Digital Marketing
+              </a>
+              <a href="#services" className={linkClass}>
+                Social Media
+              </a>
+            </div>
           </nav>
 
           <div>
@@ -96,7 +98,6 @@ export function Footer() {
             <div className="mt-4 flex items-center gap-4">
               {socialLinks.map((link) => {
                 const Icon = link.icon;
-
                 return (
                   <a
                     key={link.label}
@@ -115,9 +116,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-light/[0.06] pt-6 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs text-light/45">
-            {t.footer.rights}
-          </p>
+          <p className="text-xs text-light/45">{t.footer.rights}</p>
           <div className="flex items-center gap-2 text-xs text-light/45">
             <a
               href="#privacy"
