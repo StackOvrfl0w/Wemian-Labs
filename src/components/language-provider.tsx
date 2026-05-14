@@ -175,7 +175,7 @@ const translations = {
       ],
       highlight: "sistemas",
       subtext:
-        "Automatización. IA. Marketing. Un enfoque integrado para operaciones digitales.",
+        "Automatización • IA • Marketing. Un enfoque integrado para operaciones digitales.",
       primary: "Iniciar un Proyecto",
       secondary: "Ver Nuestro Proceso",
     },
